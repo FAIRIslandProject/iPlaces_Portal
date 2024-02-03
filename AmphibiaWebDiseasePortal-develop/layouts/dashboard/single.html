@@ -1,0 +1,237 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+
+{{ define "main" }}
+
+{{ range  $.Params.js }}
+	<script type="text/javascript" src="{{ . }}"></script>
+{{ end }}
+{{ range  $.Params.css }}
+<link rel="stylesheet" href="{{ . }}" | relURL/>
+{{ end }}
+<body>
+<div id="hero" class="wrap">
+  <h2>{{.Title }}</h2>
+  NOTE: This page is a work in progress - some features may not work as expected yet. <br>
+  Keep checking back for updates!
+
+  <p id="description">Visualize data for all publicly available projects.</p>
+
+  <!-- Tab links -->
+<div id="tab-nav" class="tab">
+  <button id="table-btn" class="tablinks" onclick="toggleData(event, 'table-tab')">Tables</button>
+  <button id="chart-btn" class="tablinks" onclick="toggleData(event, 'charts-tab')">Charts</button>
+  <button id="list-btn" class="tablinks" onclick="toggleData(event, 'list-tab')">List by Species</button>
+</div>
+
+<!-- TABLE TAB -->
+<div id="table-tab" class="tabcontent" style="display:block;">
+  <h4>Summary</h4>
+  <div id="summary-table-data-container">
+
+    <table id="summary-data-table">
+      <tr>
+        <th>Total Samples</th>
+        <th>Number of Species</th>
+        <th>Number of Countries</th>
+      </tr>
+    </table>
+
+    <table id="pathogen-summary-table">
+      <tr>
+        <th>Pathogen</th>
+        <th>Total Sample Count</th>
+        <th>Tested Positive</th>
+        <th>Tested Negative</th>
+        <th>Inconclusive</th>
+        <th>Unknown</th>
+      </tr>
+    </table>
+    
+  </div>
+
+  <h5 id='topten-table-label'>Top Ten By Country and Species</h5>
+  <div id="topten-data-table-container">
+
+    <table id="country-table">
+      <tr>
+        <th>Country</th>
+        <th>Sample Count</th>
+      </tr>
+    </table>
+
+    <table id="species-table">
+      <tr>
+        <th>Species</th>
+        <th>Sample Count</th>
+      </tr>
+    </table>
+    
+  </div> <!--top ten table container-->
+
+</div><!--table tab-->
+
+<!--CHART TAB-->
+<div id="charts-tab" class="tabcontent">
+  <h4 style="margin-bottom: 0;">Select a Chart:</h4>
+  <small>Charts are scrollable</small>
+
+  <div id="dash-form-container">
+
+    <select id="result-select">
+      <option value="">Disease Detected</option>
+      <option value="bdDetectedByCountry">Bd Detected By Country</option>
+      <option value="bsalDetectedByCountry">Bsal Detected By Country</option>
+      <option value="bothByCountryStacked">Both Tested By Country</option>
+      <option value="bdDetectedByGenus"> Bd Detected by Genus</option>
+      <option value="bsalDetectedByGenus"> Bsal Detected by Genus</option>
+      <!-- <option value="bdDetectedByScientificName">Bd Detected By Scientific Name</option> -->
+      <option value="bsalDetectedByScientificName">Bsal Detected By Scientific Name</option>
+    </select>
+
+    <select id="by-year-select">
+      <option value="">Year Collected</option>
+      <option value="bdDetectedByYear">Bd Disease Detected By Year</option>
+      <option value="bsalDetectedByYear">Bsal Disease Detected By Year</option>
+    </select>
+
+    <select id="by-species-select">
+      <option value="">Genus and Scientific Name</option>
+      <option value="bdGenus">Bd Genus</option>
+      <option value="bsalGenus">Bsal Genus</option>
+      <option value="bothGenusStacked">Both Stacked Genus</option>
+      <!-- <option value="bdScientificName">Bd Scientific Name</option> -->
+      <option value="bsalScientificName">Bsal Scientific Name</option>
+      <!-- <option value="bothScientificNameStacked">Both Stacked Scientific Name</option> -->
+      <option value="byOrder">Samples by Order</option>
+    </select>
+
+  </div> <!-- container for selects-->
+
+<div class="wrapper toggle-chart" style="margin: auto; display: block;">
+  <div id="chart-container">
+      <canvas id="dashboardChart" height="450px"></canvas>
+  </div>
+</div>
+
+<div class="horizontal-wrapper toggle-horizontal-chart" style="margin: auto; display: none;">
+  <div id="horizontal-chart-container">
+      <canvas id="dashboardHorizontalChart" height="1000px"></canvas>
+  </div>
+</div>
+
+</div> <!--chart tab container-->
+
+<!-- LIST TAB -->
+<div id="list-tab" class="tabcontent">
+  
+  <div id="list-nav">
+    <a href="#sort-a">A</a> | 
+    <a href="#sort-b">B</a> | 
+    <a href="#sort-c">C</a> | 
+    <a href="#sort-d">D</a> | 
+    <a href="#sort-e">E</a> | 
+    <a href="#sort-f">F</a> | 
+    <a href="#sort-g">G</a> | 
+    <a href="#sort-h">H</a> | 
+    <a href="#sort-i">I</a> | 
+    <a href="#sort-j">J</a> | 
+    <a href="#sort-k">K</a> | 
+    <a href="#sort-l">L</a> | 
+    <a href="#sort-m">M</a> | 
+    <a href="#sort-n">N</a> | 
+    <a href="#sort-o">O</a> | 
+    <a href="#sort-p">P</a> | 
+    <a href="#sort-q">Q</a> | 
+    <a href="#sort-r">R</a> | 
+    <a href="#sort-s">S</a> | 
+    <a href="#sort-t">T</a> | 
+    <a href="#sort-u">U</a> | 
+    <a href="#sort-v">V</a> | 
+    <a href="#sort-w">W</a> | 
+    <a href="#sort-x">X</a> | 
+    <a href="#sort-y">Y</a> | 
+    <a href="#sort-z">Z</a>
+  </div>
+
+  <div id="species-search-container">
+    <form id="species-searchbar">
+      <input id="species-input" class="search" type="text" placeholder="Search Scientific Name..." name="search" autofocus autocomplete="off">
+    </form>
+  </div>
+
+  <div id="list-container">
+    <div id="sort-a"><h3 class="hide-on-search">A</h3><ul></ul></div>
+    <div id="sort-b"><h3 class="hide-on-search">B</h3><ul></ul></div>
+    <div id="sort-c"><h3 class="hide-on-search">C</h3><ul></ul></div>
+    <div id="sort-d"><h3 class="hide-on-search">D</h3><ul></ul></div>
+    <div id="sort-e"><h3 class="hide-on-search">E</h3><ul></ul></div>
+    <div id="sort-f"><h3 class="hide-on-search">F</h3><ul></ul></div>
+    <div id="sort-g"><h3 class="hide-on-search">G</h3><ul></ul></div>
+    <div id="sort-h"><h3 class="hide-on-search">H</h3><ul></ul></div>
+    <div id="sort-i"><h3 class="hide-on-search">I</h3><ul></ul></div>
+    <div id="sort-j"><h3 class="hide-on-search">J</h3><ul></ul></div>
+    <div id="sort-k"><h3 class="hide-on-search">K</h3><ul></ul></div>
+    <div id="sort-l"><h3 class="hide-on-search">L</h3><ul></ul></div>
+    <div id="sort-m"><h3 class="hide-on-search">M</h3><ul></ul></div>
+    <div id="sort-n"><h3 class="hide-on-search">N</h3><ul></ul></div>
+    <div id="sort-o"><h3 class="hide-on-search">O</h3><ul></ul></div>
+    <div id="sort-p"><h3 class="hide-on-search">P</h3><ul></ul></div>
+    <div id="sort-q"><h3 class="hide-on-search">Q</h3><ul></ul></div>
+    <div id="sort-r"><h3 class="hide-on-search">R</h3><ul></ul></div>
+    <div id="sort-s"><h3 class="hide-on-search">S</h3><ul></ul></div>
+    <div id="sort-t"><h3 class="hide-on-search">T</h3><ul></ul></div>
+    <div id="sort-u"><h3 class="hide-on-search">U</h3><ul></ul></div>
+    <div id="sort-v"><h3 class="hide-on-search">V</h3><ul></ul></div>
+    <div id="sort-w"><h3 class="hide-on-search">W</h3><ul></ul></div>
+    <div id="sort-x"><h3 class="hide-on-search">X</h3><ul></ul></div>
+    <div id="sort-y"><h3 class="hide-on-search">Y</h3><ul></ul></div>
+    <div id="sort-z"><h3 class="hide-on-search">Z</h3><ul></ul></div>
+  </div>
+  <a onclick="scrollToTop()"><h6 id="backtotop"><i class="fa fa-arrow-up" aria-hidden="true"></i></h6></a>
+
+</div> <!--List Tab-->
+
+<div id="species-stats">
+</div>
+
+<div id="info-dash" style="display:none;">
+
+  <div id="bd-chart-container">
+    <h5>Bd</h5>
+    <canvas id="bd-chart" width="300px" height="300px"></canvas>
+  </div>
+  
+  <div id="bsal-chart-container">
+    <h5>Bsal</h5>
+    <canvas id="bsal-chart" width="300px" height="300px" ></canvas>
+  </div>
+
+  <div id="totals-chart-container">
+    <h5>Total Sampled</h5>
+    <canvas id="both-chart" width="300px" height="300px" ></canvas>
+  </div>
+
+  <div id="additional-info">
+    <h5>Associated Projects</h5>
+    <ul id="associated-projects"></ul>
+  </div>
+  
+</div><!--info dashboard-->
+
+<div id="country-detail-container">
+</div><!--country detail container-->
+
+</div>
+
+</body>
+
+<script>
+  dashboard = new Dashboard();
+</script>
+
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer" . }}
+{{ end }}

@@ -1,0 +1,75 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main" }}
+
+{{ range  $.Params.css }}
+<link rel="stylesheet" href="{{ . }}" | relURL/>
+{{ end }}
+
+<body>
+	<div id="hero" class="wrap">
+		<h2>{{.Title }}</h2>
+
+		<div id="search-container">
+			<p></p>
+			<form id="searchbar">
+				<input class="search" type="text" placeholder="Search Public Projects..." name="search" autofocus autocomplete="off">
+				<div id="radio-div">
+					<div class="align">
+						<input id="rad-proj-name" class="radio-btn" type="radio" name="searchby" value="pname" checked="checked"> 
+						<label for="rad-proj-name">Project Name</label>
+					</div>
+					<div class="align">
+						<input id="rad-proj-pi" class="radio-btn" type="radio" name="searchby" value="ppi"> 
+						<label for="rad-proj-pi">Project PI</label>
+					</div>
+					<div class="align">
+						<input id="rad-proj-affiliation" class="radio-btn" type="radio" name="searchby" value="affiliation">
+						<label for="rad-proj-affiliation">Affiliation</label>
+					</div>
+					<div class="align">
+						<input id="rad-proj-contact" class="radio-btn" type="radio" name="searchby" value="contact">
+						<label for="rad-proj-contact">Project Contact</label>
+					</div>
+					<div class="align">
+						<input id="any-proj-person" class="radio-btn" type="radio" name="searchby" value="any">	
+						<label for="any-proj-person">Any Project Person</label>
+					</div>
+				</div>
+
+			  </form>
+		</div>
+
+		<!-- Click on each project to see details -->
+
+			<div id="table-container">
+				<table id="projects-display">
+				<tr id="title-row" class="no-background">
+					<th></th>
+					<th class="th-resize-larger">Project Title</th>
+					<th class="th-resize">Principal Investigator</th>
+					<th class="th-resize-medium">Principal Investigator Affiliation</th>
+					<th class="th-resize">Project Contact</th>
+					<th class="th-resize">Data Last Modified</th>
+					<th class="th-resize"></th>
+				</tr>
+				</table>
+			</div>
+			<div id="detail-container">
+				<div id="project"></div>
+				<div id="btns">	</div>
+			</div>
+    </div>
+
+
+
+{{ range  $.Params.js }}
+	<script type="text/javascript" src="{{ . }}"></script>
+{{ end }}
+
+</body>
+
+{{ end }}
+{{ define "footer" }}
+  {{ partial "footer" . }}
+{{ end }}

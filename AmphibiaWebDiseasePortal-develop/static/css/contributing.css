@@ -1,0 +1,27 @@
+.contribute-instruction {
+    margin-top: 40px;
+}
+.contribute-instruction li {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.contribute-instruction ol {
+    list-style-type: none;
+}
+
+.contribute-imgs {
+    border: 1px solid grey;
+    margin: 20px auto;
+    box-shadow: 5px 10px grey;
+    border-radius: 10px;
+    align-content: center;
+}
+
+#table-contents {
+    padding: 10px;
+    margin: auto;
+    width: 40%;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}

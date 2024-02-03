@@ -1,0 +1,26 @@
+{{ define "title"}} {{ .Site.Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+
+{{ range  $.Params.css }}
+<link rel="stylesheet" href="{{ . }}" | relURL/>
+{{ end }}
+
+<!-- <img class="home-image" src="{{.Site.BaseURL}}{{ .Site.Params.logo }}" alt="ensatina closeup" /> -->
+<div id="main-image">
+  <div id="main">
+    <div id="hero">
+      <h1 id="home-header" style="color:white;">{{.Title}}</h1>
+      <p style="color:white;" id="home-subheader">{{.Description}}</p>
+      {{ .Content}}
+
+      <div id="main-buttons">
+      <button onclick="location.href='/query'">Query Data</button>
+      <button onclick="location.href='/dashboard'">Data Dashboard</button>
+      <button onclick="location.href='/contributing'">Contribute Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}

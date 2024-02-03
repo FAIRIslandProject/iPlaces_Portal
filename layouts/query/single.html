@@ -1,0 +1,28 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+
+{{ define "main" }}
+
+{{ range  $.Params.css }}
+<link rel="stylesheet" href="{{ . }}" | relURL/>
+{{ end }}
+
+<div id="hero" class="wrap">
+ <div id="query-info">
+  {{ .Content }}
+ </div> 
+
+<div id="iframe-container">
+  <iframe id="geome-query-iframe" src="https://geome-db.org/query?team=45"></iframe>
+</div>
+
+</div>
+
+{{ range  $.Params.js }}
+<script src="{{ . }}" | relURL></script>
+{{ end }}
+
+{{ end }}
+{{ define "footer" }}
+  {{ partial "footer" . }}
+{{ end }}

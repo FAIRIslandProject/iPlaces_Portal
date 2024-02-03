@@ -1,0 +1,107 @@
+{{ define "title"}} {{ .Site.Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+
+{{ range  $.Params.css }}
+<link rel="stylesheet" href="{{ . }}" | relURL/>
+{{ end }}
+
+<div id="main">
+  <div id="hero">
+    <h2>{{.Title}}</h2>
+    
+    <p style="text-align: left;">    The  Amphibian Disease Portal uses the <a href="https://geome-db.org/" target="_blank">GEOME</a> platform to validate and upload your data. It will perform data validation and hosts all data that is accessible on the Amphibian Disease Portal. These steps are completely new from the previous version so please review the following steps for registering as a user, creating projects and loading data.
+    </p><br>
+
+    <div id="table-contents">
+      <h5>Table of Contents</h4>
+      <a href="#create-user">Creating a User Account</a> <br>
+      <a href="#create-projects">Creating Projects</a> <br>
+      <a href="#template-data">Generating a Template & Uploading Data</a> <br>
+      <a target=_blank href=https://docs.google.com/document/d/e/2PACX-1vTRxCMqyIzSUBRcubrIhjzWx83tgT0luBC1NgYjtUHAxcMb9gMUZIOXOLSpxF_YVgDfVAguye17XjYN/pub>More Tips and Guidelines for the Data Fields</a> <i class="fa fa-external-link"> </i><br>
+    </div>
+
+    <div class="contribute-instruction">
+
+      <h3 id="create-user">Creating a User Account</h3>
+
+    <ol>
+      <br>
+    <li>1. Navigate to <a href="https://geome-db.org/" target="_blank">GEOME</a><br>
+      <img class="contribute-imgs" src="../img/screenshots/ContributeData_fig1.png" alt="geome home page">
+    <li>2. Create an account if you do not already have one. (Previous users of the Amphibian Disease Portal will have received notice of their user accounts being migrated over) Click on the dropdown arrow by the Profile icon to Create Account.</li><br>
+
+    <h3 id="create-projects">Creating Projects</h3>
+
+    <li>3. After logging in, select Create a new project from the dropdown menu.</li>
+    <img class="contribute-imgs" src="../img/screenshots/ContributeData_fig2.png" alt="geome navigation to create new project">
+    <li>4. Creating a New Project will require the following:
+
+      <ul>
+        <li>Project Title (concise and descriptive is helpful).</li>
+        <li>Project Description (this can be the Abstract from a paper if associated with a publication or a brief description of the purpose and goals of your project).</li>
+        <li> Join a Team Workspace by toggling the Join button to on and selecting the Team Workspace "AmphibiaWeb's Disease Portal".</li>
+        <img class="contribute-imgs" src="../img/screenshots/Contribute_selectTeam_fig3.png" alt="geome new project form">
+        <li>Check the box whether it should be a public project. Leave unchecked to keep private.</li>
+        <li>Click Create Project to initiate.</li>
+      </ul>
+
+    <li>5. Once your project is created, go to "Project Settings" on the left side menu (under Admin) to fill out the additional project metadata fields.</li>
+      <ul>
+        <li>Here, you can edit the Title, Description, Visibility of public or private.</li>
+        <li>Other critical metadata to fill out include:</li>
+          <ol>
+            <li>Principal Investigator</li>
+            <li>PI Affiliation</li>
+            <li>Project Contact (can be different or the same as PI)</li>
+            <li>Project Contact Email</li>
+          </ol>
+      </ul>
+    
+      <li>6. Project Details may be added or edited by clicking Project Settings on the left menu. In addition to editing the above fields, you will be able to provide:</li>
+      
+      <ul>
+        <li>Publication GUID (or DOI provided by the publication journal)</li>
+        <li>Project Data GUID</li>
+        <li>Recommended citation</li>
+      </ul>
+
+      <h3 id="template-data">Generating a Template & Uploading Data</h3><br>
+      A project must already exist and your project may already have been created by the Project PI/ Contacts (steps 1-6). Ongoing projects simply have to prepare and upload datasets. In this case, follow steps 7-10:
+      
+      <li>7. To download a template → Click on "Generate Template" on the left side of the screen.</li>
+      <li>8. Choose the fields you want to include in your project (minimum default fields are preselected and recommended) and then click on the blue button "Export Excel"</li>
+        <ol>
+          <li>Click on DEF will show its definition and validation rules. Please note that materialSampleID is the <a href="https://dwc.tdwg.org/" target="_blank">DarwinCore</a> compliant field for a unique identifier for your samples. These may be barcodes or collector field numbers, for example, and link your field sample with lab results.</li>
+          <img class="contribute-imgs" src="../img/screenshots/Contribute_GenerateTemplate_DEF.png"  alt="geome template generator">
+          <li>If your dataset is based on museum vouchers or other previously cataloged specimen then include the fields for Record Details where you should click to include fields for institutionCode, collectionCode, and catalogNumber.</li>
+          <img class="contribute-imgs" src="../img/screenshots/Template_RecordDetails.png" alt="geome record and owner details">
+          <li>If your dataset includes strain or lineage information, or uses a diagnosticLab not part of your institution, you may want to include additional fields.</li>
+          <img class="contribute-imgs" src="../img/screenshots/Template_Diag_Traits.png" alt="geome diagnostics and traits">
+        </ol>
+
+    <li> 9. Fill out your spreadsheet using the template that you just downloaded. Instructions and sample field values are provided in the Excel file. Once you have completed filling in your dataset into the Excel Sheet called Samples, you can upload to the Project page. Again on the left menu, click on Load Data.</li>
+    <img class="contribute-imgs" src="../img/screenshots/Contribute_LoadData.png" alt="geome load data page">
+        <ol>
+          <li>If you are using the generated template (XLS) then accept the default Excel Workbook</li>
+          <li>Browse to a completed Excel workbook and you will be prompted for a few details about the dataset, which in GEOME are called ‘expeditions’</li>
+          <img class="contribute-imgs" src="../img/screenshots/Contribute_uploaddata.png" alt="geome new expedition form"><br>
+          TIP: if this is an ongoing project, use dates in the title and shortcode. 
+          <li>Checking Replace expedition data will delete previous datasets and is an option for correcting or updating previously uploaded data. Use the exact same Expedition Title, Code, and DiagnosticLab as the dataset to be replaced.</li>
+        </ol>
+
+    <li>10. Be sure to click Load to start the validation process. When your spreadsheet is uploaded, you will see validation results or click on the tab Results. If there are errors, view the issues (expand message) and correct them before uploading the XLS file again. Example results:</li>
+    <img class="contribute-imgs" src="../img/screenshots/Contribute_ValidationResults.png"  alt="geome validation results"><br>
+  </ol>
+
+  Public datasets will be accessible in the <a href="https://amphibiandisease.org/projects/">Amphibian Disease Project</a> page. Note that you will need to make your project public before it appears in the Amphibian Disease portal, and datasets must be public before results appear in Project, Query and other aggregated data views. <br>
+  For more information, see Video Library: Instructional and Technical Presentations under GEOME's <a href="https://geome-db.org/about" target="_blank">Getting Started</a> page.<br>
+  <a target=_blank href=https://docs.google.com/document/d/e/2PACX-1vTRxCMqyIzSUBRcubrIhjzWx83tgT0luBC1NgYjtUHAxcMb9gMUZIOXOLSpxF_YVgDfVAguye17XjYN/pub>More Tips and Guidelines for the Data Fields</a> <i class="fa fa-external-link"> </i>
+
+    </div>
+
+  </div>
+</div>
+
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}
