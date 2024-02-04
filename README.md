@@ -1,18 +1,20 @@
 
-Master Branch Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/23d9985e-54ca-4f1e-9acb-72998d516f11/deploy-status)](https://app.netlify.com/sites/amphibiandiseaseportal/deploys)
+Master Branch Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/7cc69373-550d-481d-a76b-1e89ce2f816f/deploy-status)](https://app.netlify.com/sites/iplaces-test/deploys)
 
-Develop Branch Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/b68a24b3-fd2d-4499-adf0-4917402d68e7/deploy-status)](https://app.netlify.com/sites/amphibiandisease-develop/deploys)
+Develop Branch Status: 
 
 
-# Amphibian Disease Portal
+# iPlaces Portal
+
+This portal is forked from the Amphibian Disease Portal. 
 
 New portal design built in Hugo and Javascript with GEOME backend.  Commits to the master and develop branch are watched by netlify and deployed at the following URL addresses:
 
-Master Branch URL: https://amphibiandisease.org
+Master Branch URL: https://iplaces-test.netlify.app/
 
-Develop Branch URL: https://amphibiandisease-develop.netlify.com/
+Develop Branch URL: TBD 
 
-Site v2.0 went live May 28th on Netlify!
+Site v0.0 went live Feb 3rd on Netlify!
 
 # Developers
 
